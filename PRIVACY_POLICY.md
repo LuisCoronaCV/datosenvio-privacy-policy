@@ -3,7 +3,11 @@
 **Fecha de vigencia:** 27 de septiembre de 2026
 
 Datos Envío ("la aplicación") es una herramienta local para registrar envíos.
-El desarrollador no opera servidores ni recopila datos de los usuarios.
+El desarrollador no opera servidores propios ni recopila directamente los
+datos de envío de los usuarios. Los datos de clientes, direcciones, teléfonos,
+fotografías, notas y demás información registrada por la aplicación permanecen
+en el dispositivo, salvo las transferencias que el usuario inicia
+expresamente, como abrir una dirección en Maps o exportar un archivo ZIP.
 
 ## Datos que procesa la aplicación
 
@@ -25,8 +29,8 @@ la base de datos local y en los archivos internos de la aplicación.
 
 La aplicación:
 
-- No envía datos a internet ni a servidores del desarrollador.
-- No tiene cuentas de usuario, analítica, publicidad ni rastreo.
+- No envía sus datos de envío a internet ni a servidores del desarrollador.
+- No tiene cuentas de usuario, analítica propia, publicidad ni rastreo.
 - No solicita permisos sensibles; la cámara y las fotografías se usan mediante
   los selectores del sistema operativo.
 
@@ -58,8 +62,29 @@ explícitamente por el usuario que transfieren información a otros destinos:
 
 ## Reconocimiento de texto (OCR)
 
-La extracción de folios de las fotografías se realiza dentro del dispositivo
-mediante ML Kit. Las imágenes no se envían a ningún servidor.
+La extracción de texto de las fotografías se realiza dentro del dispositivo
+mediante ML Kit de Google. Las imágenes, el texto reconocido y los resultados
+del OCR **no se envían** a servidores de Google ni a terceros.
+
+ML Kit es un SDK de Google y, conforme a su documentación oficial, puede
+transmitir a Google **información técnica** del SDK para diagnósticos y
+analítica de uso, que puede incluir:
+
+- Información del dispositivo (fabricante, modelo, versión y compilación del
+  sistema operativo, aceleradores de hardware disponibles).
+- Información de la aplicación (nombre del paquete y versión).
+- Identificadores del dispositivo e identificadores por instalación. Los
+  identificadores por instalación descritos por Google no están destinados a
+  identificar de forma única a un usuario o dispositivo físico.
+- Métricas de rendimiento (como la latencia).
+- Configuración de la API (formato y resolución de imagen), tamaños de entrada
+  y salida, y versión de la función utilizada.
+- Tipos de eventos del SDK (inicialización, descarga de modelos, detección,
+  liberación de recursos) y códigos de error.
+
+Esta información técnica se transmite cifrada mediante HTTPS y Google indica
+que no la comparte con terceros. No incluye el contenido de sus envíos, sus
+fotografías ni los textos reconocidos.
 
 ## Menores
 
